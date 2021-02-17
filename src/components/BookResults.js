@@ -8,7 +8,7 @@ const BookResults = () => {
 
   return (
     <div>
-      BookResults!
+      Book Results!
     </div>
   )
 }
