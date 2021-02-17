@@ -4,17 +4,18 @@ import axios from 'axios'
 const Home = () => {
 
   const [bookQuery, setBookQuery] = useState('')
+  const [queryData, setQueryData] = useState()
 
   const handleQuery = (e) => {
     setBookQuery(e.target.value)
     console.log(bookQuery)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     console.log('SUBMITTING!!!')
-    axios.get(`https://openlibrary.org/subjects/${bookQuery}.json?limit=50`)
-    .then(response => console.log('response:', response.data.works))
+   await axios.get(`https://openlibrary.org/subjects/${bookQuery}.json?limit=50`)
+    .then(response => setQueryData(response.data.works))
   }
 
   return (
@@ -30,6 +31,16 @@ const Home = () => {
         Find Books!
       </button>
       </form>
+    {queryData &&
+    <ul>
+      {queryData.map((book) => {
+        return (
+          <li>{book.title}</li>
+          )
+        })}
+    </ul>
+      }
+
     </div>
   )
 }
