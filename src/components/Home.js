@@ -1,4 +1,5 @@
 import React, { useState }  from 'react'
+import axios from 'axios'
 
 const Home = () => {
 
@@ -9,17 +10,22 @@ const Home = () => {
     console.log(bookQuery)
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('SUBMITTING!!!')
+    axios.get(`https://openlibrary.org/subjects/${bookQuery}.json?limit=50`)
+    .then(response => console.log('response:', response.data.works))
+  }
+
   return (
     <div>
-      <form>
+      <form  onSubmit={handleSubmit}>
       <input 
-        name='booksearch' 
-        type='search'
+        type='text'
         onChange={handleQuery}
       />
       <button 
         type='submit' 
-        onSubmit={handleSubmit}
       >
         Find Books!
       </button>
