@@ -1,8 +1,8 @@
 import React, { useState }  from 'react'
 import axios from 'axios'
 
-const Home = () => {
-
+const Home = (props) => {
+  console.log(props)
   const [bookQuery, setBookQuery] = useState('')
   const [queryData, setQueryData] = useState()
 
