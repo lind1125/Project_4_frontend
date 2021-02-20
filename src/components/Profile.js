@@ -13,11 +13,13 @@ const Profile = (props) => {
     .then(res => {
       console.log(res)
       setUser(res.data.data)
-      console.log('user:', user)
+      console.log('user:', {user})
     })
     .catch(err => console.log(err))
   }, [])
   
+
+
   return (
     <div>
       {user.personname}'s Profile Page!

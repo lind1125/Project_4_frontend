@@ -1,5 +1,7 @@
 import React, { useState }  from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
+
 
 const Home = (props) => {
   console.log(props)
@@ -15,8 +17,11 @@ const Home = (props) => {
     e.preventDefault()
     console.log('SUBMITTING!!!')
    await axios.get(`https://openlibrary.org/subjects/${bookQuery}.json?limit=50`)
-    .then(response => setQueryData(response.data.works))
-  }
+    .then(response => {
+      setQueryData(response.data.works)
+      console.log(response.data)
+    }
+    )}
 
   return (
     <div>
@@ -35,11 +40,18 @@ const Home = (props) => {
     <ul>
       {queryData.map((book) => {
         return (
-          <li>{book.title}</li>
-          )
-        })}
+          <Link>
+            <div>
+              <h3>  
+              {book.title}
+              </h3>
+              <img src={`http://covers.openlibrary.org/b/olid/${book.lending_edition}-S.jpg`} />
+            </div>
+          </Link>
+        )
+          })}
     </ul>
-      }
+  }
 
     </div>
   )

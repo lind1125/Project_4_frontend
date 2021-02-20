@@ -1,7 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom'
+import axios from 'axios'
+
+const API_URL = process.env.REACT_APP_DEV_URL
+
+
 
 const Layout = (props) => {
+  
+  const logOut = () => {
+    axios.get(API_URL + 'persons/logout',  { withCredentials: true })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  }
+
+
   return (
     <div>
     <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -12,6 +25,19 @@ const Layout = (props) => {
         <li className="nav-item">
           <Link to={"/home"} className="nav-link">Home</Link>
         </li>
+        <li className="nav-item">
+          <Link to={"/login"} className="nav-link">Login</Link>
+        </li>
+        <li className="nav-item">
+          <Link to={"/profile"} className="nav-link">Profile</Link>
+        </li>
+        <li className='nav-item'>
+        <button 
+          onClick={logOut}
+        >
+          Log out
+        </button>
+          </li>
 
 
         {/* {
