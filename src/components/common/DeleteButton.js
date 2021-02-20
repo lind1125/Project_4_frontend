@@ -5,7 +5,6 @@ const API_URL = process.env.REACT_APP_DEV_URL
 
 
 const DeleteButton = ({bookId}) => {
-  console.log(bookId)
    
   const removeBook = async () => {
    await axios.delete(API_URL + `books/faves/${bookId}`, { withCredentials: true })

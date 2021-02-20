@@ -12,6 +12,7 @@ const Layout = (props) => {
     axios.get(API_URL + 'persons/logout',  { withCredentials: true })
     .then(res => console.log(res))
     .catch(err => console.log(err))
+    window.location.replace('/login')
   }
 
 
@@ -38,47 +39,8 @@ const Layout = (props) => {
           Log out
         </button>
           </li>
-
-
-        {/* {
-          currentUser && (
-            <li className="nav-item">
-              <Link to={"/profile"} className="nav-link">
-                Profile
-                </Link>
-            </li>
-          )
-        } */}
-
       </div>
-{/* 
-        {currentUser ?
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={'/profile'} className="nav-link">
-                {currentUser.username}
-              <FontAwesomeIcon className='ml-2' icon={['fas', 'user']} />
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a  href="/" className="nav-link" onClick={logOut}>
-                Log out
-                <FontAwesomeIcon className='ml-2' icon={['fas', 'user-slash']} />
-              </a>
-            </li>
-          </div> : (
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to= className="nav-link">
-                  Login
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to= className="nav-link">
-                  Signup
-                </Link>
-              </li>
-          </div>)} */}
+
 
     </nav>
     <div className="container mt-3">
