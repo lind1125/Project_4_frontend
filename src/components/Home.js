@@ -38,14 +38,14 @@ const Home = (props) => {
       </form>
     {queryData &&
     <ul>
-      {queryData.map((book) => {
+      {queryData.map((book, index) => {
         return (
-          <Link>
+          <Link  to={ { pathname:`/books/${book.key.slice(7)}`} } key={index} >
             <div>
               <h3>  
               {book.title}
               </h3>
-              <img src={`http://covers.openlibrary.org/b/olid/${book.lending_edition}-S.jpg`} />
+              <img src={`http://covers.openlibrary.org/b/id/${book.cover_id}-S.jpg`} />
             </div>
           </Link>
         )
