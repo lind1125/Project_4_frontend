@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
+const API_URL = process.env.REACT_APP_DEV_URL
+
+
 const BookDetails = (props) => {
-  console.log(props)
   
   let apiId = props.match.params.bookid
-  
-  console.log(apiId)
+  let coverUrl
 
   const [bookData, setBookData] = useState({})
   const [loading, setLoading] = useState(true)
+  const [listData, setListData] = useState(
+    {
+      title:'',
+      cover_url:'',
+      apiKey: `${apiId}`,
+      has_read: false,
+      recommended: false
+    }
+  )
 
   useEffect( async () => {
-    // setLoading(true)
     await axios.get(`https://openlibrary.org/works/${apiId}.json`)
     .then(res => {
       setBookData(res.data)
@@ -20,12 +29,28 @@ const BookDetails = (props) => {
     .catch(err => console.log(err))
     setLoading(false)
   }, [])
+
+ 
   
-  console.log(bookData)
+  const addToList = async () => {
+    await setListData(
+      {
+      title: `${bookData.title}`,
+      cover_url: `http://covers.openlibrary.org/b/id/${bookData.covers[0]}-M.jpg`,
+      apiKey: `${apiId}`,
+      has_read: false,
+      recommended: false
+      }
+    )
+    console.log(listData)
+  await axios.post(API_URL + 'books/addfave', {listData}, { withCredentials: true })
+  .then(res => console.log(res))
+  .catch(err => console.log(err))
+ }
   
   return (
     loading ? (
-      <div class="spinner-border" role="status">
+      <div className="spinner-border" role="status">
         <span className="sr-only">Loading...</span>
       </div>
     ) : (
@@ -36,7 +61,11 @@ const BookDetails = (props) => {
       />
       <div className='card-body'>
       <h5>{bookData.title}</h5>
-      <p>{bookData.description}</p>
+      {bookData.description ? (
+        <p>{bookData.description} </p>
+      ) : <p>No Description Available</p>
+      }
+      <button className='btn-primary' onClick={addToList}>Add to My List!</button>
       </div>
     </div>
     )
