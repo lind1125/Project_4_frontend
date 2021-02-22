@@ -6,7 +6,6 @@ import {Link} from 'react-router-dom'
 import DeleteButton from './common/DeleteButton'
 import ReadButton from './common/ReadButton'
 
-const API_URL = process.env.REACT_APP_DEV_URL
 
 
 const FavedBooks = ({user}) => {
@@ -15,7 +14,7 @@ const FavedBooks = ({user}) => {
   const [faveList, setFaveList] = useState([])
 
   useEffect(() => {
-      axios.get(API_URL + 'books/faves', { withCredentials: true })
+      axios.get(process.env.REACT_APP_BACKEND_URL + 'books/faves', { withCredentials: true })
       .then(res => {
         setFaveList(res.data.data)
       })

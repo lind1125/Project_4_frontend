@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 
-const API_URL = process.env.REACT_APP_DEV_URL
 
 
 const BookDetails = (props) => {
@@ -40,7 +39,7 @@ const BookDetails = (props) => {
   
   useEffect(() => {
   if (listData != null) {
-    axios.post(API_URL + 'books/addfave', {listData}, { withCredentials: true })
+    axios.post(process.env.REACT_APP_BACKEND_URL + 'books/addfave', {listData}, { withCredentials: true })
   .then(res => console.log(res))
   .catch(err => console.log(err))
   }}, [listData])

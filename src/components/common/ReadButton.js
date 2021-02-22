@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const API_URL = process.env.REACT_APP_DEV_URL
 
 
 const ReadButton = ({book}) => {
@@ -22,7 +21,7 @@ const ReadButton = ({book}) => {
   const updateReadStatus = () => {
     setData({...data, has_read: true})
     console.log('updated:', data)
-    axios.put(API_URL + `books/faves/${book.id}`, {data}, { withCredentials: true } )
+    axios.put(process.env.REACT_APP_BACKEND_URL + `books/faves/${book.id}`, {data}, { withCredentials: true } )
     .then(res => console.log(res))
     .catch(err => console.log(err))
   }

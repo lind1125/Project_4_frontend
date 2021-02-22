@@ -4,7 +4,6 @@ import axios from 'axios'
 import FavedBooks from './FavedBooks'
 
 
-const API_URL = process.env.REACT_APP_DEV_URL
 
 
 const Profile = (props) => {
@@ -12,7 +11,7 @@ const Profile = (props) => {
   const [user, setUser] = useState({})
 
   useEffect(async () => {
-    await axios.get(API_URL + 'persons/profile', { withCredentials: true })
+    await axios.get(process.env.REACT_APP_BACKEND_URL + 'persons/profile', { withCredentials: true })
     .then(res => {
       console.log(res)
       setUser(res.data.data)

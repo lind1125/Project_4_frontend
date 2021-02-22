@@ -6,7 +6,6 @@ import Input from 'react-validation/build/input'
 // Component
 import FormGroup from './common/FormGroup'
 
-const API_URL = process.env.REACT_APP_DEV_URL
 
 
 const Login = () => {
@@ -19,7 +18,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('SUBMITTING!!!')
-    axios.post(API_URL + 'persons/login', {formData}, { withCredentials: true })
+    axios.post(process.env.REACT_APP_BACKEND_URL + 'persons/login', {formData}, { withCredentials: true })
     .then(res => console.log(res))
     .catch(err => console.log(err))
   }

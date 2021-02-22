@@ -2,14 +2,13 @@ import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
-const API_URL = process.env.REACT_APP_DEV_URL
 
 
 
 const Layout = (props) => {
   
   const logOut = () => {
-    axios.get(API_URL + 'persons/logout',  { withCredentials: true })
+    axios.get(process.env.REACT_APP_BACKEND_URL + 'persons/logout',  { withCredentials: true })
     .then(res => console.log(res))
     .catch(err => console.log(err))
     window.location.replace('/login')
