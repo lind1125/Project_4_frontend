@@ -25,7 +25,8 @@ const Home = (props) => {
 
   return (
     <div>
-      <form  onSubmit={handleSubmit}>
+      <h1>Booxploration</h1>
+      <form className='mb-5'  onSubmit={handleSubmit}>
       <input 
         type='text'
         onChange={handleQuery}
@@ -42,10 +43,10 @@ const Home = (props) => {
         return (
           <Link  to={ { pathname:`/books/${book.key.slice(7)}`} } key={index} >
             <div>
+              <img src={`http://covers.openlibrary.org/b/id/${book.cover_id}-S.jpg`} />
               <h3>  
               {book.title}
               </h3>
-              <img src={`http://covers.openlibrary.org/b/id/${book.cover_id}-S.jpg`} />
             </div>
           </Link>
         )

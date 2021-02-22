@@ -32,7 +32,7 @@ const Layout = (props) => {
         <li className="nav-item">
           <Link to={"/profile"} className="nav-link">Profile</Link>
         </li>
-        <li className='nav-item'>
+        <li className='nav-item '>
         <button 
           onClick={logOut}
         >
@@ -44,7 +44,9 @@ const Layout = (props) => {
 
     </nav>
     <div className="container mt-3">
+      <div>
       {props.children}
+      </div>
     </div>
   </div>
   )
