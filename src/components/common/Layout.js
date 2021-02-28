@@ -11,7 +11,9 @@ const Layout = (props) => {
     axios.get(process.env.REACT_APP_BACKEND_URL + 'persons/logout',  { withCredentials: true })
     .then(res => console.log(res))
     .catch(err => console.log(err))
-    // window.location.replace('/login')
+    setTimeout(() => {
+      window.location.replace('/')
+    }, 500)
   }
 
 
