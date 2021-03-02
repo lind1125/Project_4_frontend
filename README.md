@@ -2,7 +2,7 @@
 
 [**Deployed APP**](https://booxploration.herokuapp.com/)
 
-[**Link to Backend Repo**](https://github.com/lind1125/Project_4_backend)
+[**Link to Backend Repo**](https://github.com/lind1125/Booxploration_backend)
 
 
 ---
